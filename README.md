@@ -30,6 +30,8 @@ log additional parameters
 
 ``` elixir
 ExWrapplog.log(:error, "This is an error message", %{reason: "Any reason"})
+
+Outputs:
 ERROR {"reason":"Any reason","msg":"This is an error message","level":"error"}
 :logged
 ```
