@@ -1,6 +1,6 @@
 # ex-wrapplog
 
-A simple logger that writes log information in JSON format on standard output.
+A simple logger for Elixir that writes log information in JSON format on standard output.
 
 ## Usage:
 
