@@ -4,7 +4,7 @@ A simple logger for Elixir that writes log information in JSON format on standar
 
 ## Usage:
 
-Configure your `mix.exs` as:
+Configure your `mix.exs` and add the dependency:
 
 ``` elixir
 defp deps do
@@ -15,7 +15,7 @@ def application do
   [applications: [:ex_wrapplog]]
 end
 ```
-Configure your `config.exs`
+Configure your `config.exs` to set the logging level.
 ``` elixir
 config :ex_wrapplog, :level, :info
 ```
