@@ -50,6 +50,7 @@ defmodule ExWrapplog do
     |> Enum.member?(level)
   end
 
+  defp levels_to_log(:off), do: []
   defp levels_to_log(level) do
     log_level = Keyword.fetch(@levels, level)
     @levels
