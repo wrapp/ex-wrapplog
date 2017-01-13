@@ -7,7 +7,7 @@ defmodule ExWrapplog.Mixfile do
   def project do
     [app: :ex_wrapplog,
      version: @version,
-     elixir: "~> 1.3",
+     elixir: "~> 1.4",
      description: "A simple JSON logger for elixir.",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
