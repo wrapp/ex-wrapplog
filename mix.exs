@@ -44,6 +44,6 @@ defmodule ExWrapplog.Mixfile do
   end
 
   defp deps do
-    [{:poison, "~> 1.5.2"}]
+    [{:poison, "~> 3.1"}]
   end
 end
