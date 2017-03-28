@@ -1,6 +1,8 @@
 defmodule ExWrapplog do
 
-  @levels [{:debug, 0}, {:info, 1}, {:warn, 2}, {:error, 3}]
+  @levels   [{:debug, 0}, {:info, 1}, {:warning, 2}, {:error, 3}, {:panic, 4}]
+  @service  System.get_env("SERVICE_NAME") || ""
+  @datetime Application.get_env(:ex_wrapplog, :datetime)
 
   @doc """
   Generates a JSON log and writes to the standard output.
@@ -27,19 +29,23 @@ defmodule ExWrapplog do
   @doc """
   Logs the message at warn level to the standard output
   """
-  def warn(msg, params  \\ %{}), do: :warn  |> log(msg, params)
+  def warn(msg, params  \\ %{}), do: :warning  |> log(msg, params)
 
   @doc """
   Logs the message at error level to the standard output
   """
   def error(msg, params \\ %{}), do: :error |> log(msg, params)
 
-  defp log_event(level, msg, %{} = params) do
-    level |> to_string |> String.upcase |> IO.write
-    IO.write " "
+  @doc """
+  Logs the message at panic level to the standard output
+  """
+  def panic(msg, params \\ %{}), do: :panic |> log(msg, params)
 
+  defp log_event(level, msg, %{} = params) do
     Map.put(params, :msg, msg)
+    |> Map.put(:timestamp, @datetime.utc_now |> @datetime.to_iso8601)
     |> Map.put(:level, level)
+    |> Map.put(:service, @service)
     |> Poison.encode!
     |> IO.puts
   end
