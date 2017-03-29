@@ -1,7 +1,7 @@
 defmodule ExWrapplog do
 
   @levels   [{:debug, 0}, {:info, 1}, {:warning, 2}, {:error, 3}, {:panic, 4}]
-  @service  System.get_env("SERVICE_NAME") || ""
+  @service  Application.get_env(:ex_wrapplog, :service_name)
   @datetime Application.get_env(:ex_wrapplog, :datetime)
 
   @doc """
