@@ -18,6 +18,9 @@ end
 Configure your `config.exs` to set the logging level (or to turn off logging).
 ``` elixir
 config :ex_wrapplog, :level, :info
+
+# Set the name of the service (It will be logged)
+config :ex_wrapplog, service_name: "myservice"
 ```
 To turn off logging set the configuration to `:off`.
 ``` elixir
@@ -37,7 +40,7 @@ log additional parameters
 Log.log(:error, "This is an error message", %{reason: "Any reason"})
 
 Outputs:
-ERROR {"reason":"Any reason","msg":"This is an error message","level":"error"}
+{"timestamp":"2017-03-28T13:46:06.989172Z","service":"myservice","reason":"Any reason", "msg":"This is an error message","level":"error"}
 :logged
 ```
 
