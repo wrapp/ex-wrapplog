@@ -1,8 +1,8 @@
 defmodule ExWrapplog do
 
   @levels   [{:debug, 0}, {:info, 1}, {:warning, 2}, {:error, 3}, {:panic, 4}]
-  @service  Application.get_env(:ex_wrapplog, :service_name)
-  @datetime Application.get_env(:ex_wrapplog, :datetime)
+  @service  Application.get_env(:ex_wrapplog, :service_name, System.get_env("SERVICE_NAME"))
+  @datetime Application.get_env(:ex_wrapplog, :datetime, DateTime)
 
   @doc """
   Generates a JSON log and writes to the standard output.
