@@ -1,7 +1,6 @@
 defmodule ExWrapplog do
 
   @levels   [{:debug, 0}, {:info, 1}, {:warning, 2}, {:error, 3}, {:panic, 4}]
-  @service  Application.get_env(:ex_wrapplog, :service_name, System.get_env("SERVICE_NAME"))
   @datetime Application.get_env(:ex_wrapplog, :datetime, DateTime)
 
   @doc """
@@ -45,7 +44,7 @@ defmodule ExWrapplog do
     Map.put(params, :msg, msg)
     |> Map.put(:timestamp, @datetime.utc_now |> @datetime.to_iso8601)
     |> Map.put(:level, level)
-    |> Map.put(:service, @service)
+    |> Map.put(:service, Application.get_env(:ex_wrapplog, :service_name, System.get_env("SERVICE_NAME")))
     |> Poison.encode!
     |> IO.puts
   end
