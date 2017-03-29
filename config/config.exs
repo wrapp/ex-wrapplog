@@ -30,3 +30,11 @@ use Mix.Config
 #     import_config "#{Mix.env}.exs"
 
 config :ex_wrapplog, level: :debug
+
+if Mix.env == :test do
+  config :ex_wrapplog, datetime: DateTime.Mock
+  config :ex_wrapplog, service_name: "test"
+else
+  config :ex_wrapplog, service_name: System.get_env("SERVICE_NAME") || ""
+  config :ex_wrapplog, datetime: DateTime
+end
